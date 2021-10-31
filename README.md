@@ -1,25 +1,23 @@
 # clean-code-javascript
 
 Este contenido no es original. está traducido de [aquí](https://github.com/ryanmcdermott/clean-code-javascript).
-Tampoco significa que todo lo que esté en este repositorio lo comparta. De hecho,
-hay unas cosas en las que no estoy de acuerdo.
 
 ## Contenido
 
-1. [Introducción](#introduction)
+1. [Introduccion](#introduccion)
 2. [Variables](#variables)
-3. [Funciones](#functions)
-4. [Objetos y estructuras de datos](#objects-and-data-structures)
-5. [Clases](#classes)
+3. [Funciones](#funciones)
+4. [Objetos y estructuras de datos](#objetos-y-estructuras-de-datos)
+5. [Clases](#clases)
 6. [SOLID](#solid)
 7. [Testing](#testing)
-8. [Concurrencia](#concurrency)
-9. [Manejo de errores](#error-handling)
-10. [Formato](#formatting)
-11. [Comentarios](#comments)
-12. [Traducciones](#translation)
+8. [Concurrencia](#concurrencia)
+9. [Manejo de errores](#manejo-de-errores)
+10. [Formato](#formato)
+11. [Comentarios](#comentarios)
+12. [Traducciones](#traducciones)
 
-## Introducción
+## Introduccion
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](http://www.osnews.com/images/comics/wtfm.jpg)
@@ -30,8 +28,8 @@ adaptado al Javascript. Esto no es una guía de estilos. Esto es una guía
 para crear código [legible, reutilizable y de fácil modificación](https://github.com/ryanmcdermott/3rs-of-software-architecture)
 en Javascript.
 
-No se deben seguir estrictamente todos los principios e incluso aún menos,
-como tampoco, éstos van a ser dogmas internacionales ni verdades absolutas.
+No se deben seguir estrictamente todos los principios y menos considerar
+éstos como dogmas internacionales ni verdades absolutas.
 Los conceptos explicados no son más una compilación de buenas prácticas que
 han sido agrupadas a lo largo de muchos años de experiencia colectiva por
 los autores de _Código Limpio_.
@@ -45,11 +43,10 @@ evaluar la calidad del código JavaScript que tu equipo y tu producís.
 Una cosa más: Debes saber que estos principios, consejos o como quieras llamarlo,
 no te hará instantáneamente un mejor desarrollador de software y que trabajar con
 ellos durante muchos años tampoco significa que no vayas a hacer más errores.
-Cada trozo de código comienza como un primer borrador, igual que un jarrón precioso
+Cada trozo de código comienza como un primer borrador, igual que un bonito jarrón
 empieza con un trozo de arcilla feo y húmedo el cual vamos moldeando hasta conseguir el
 resultado final. Finalmente, limamos las imperfecciones cuando lo revisamos con
-nuestros compañeros a base de iteraciones. No te castigues por la posible mejora
-de los primeros borradores. En vez de eso, ¡Vence al código!
+nuestros compañeros a base de iteraciones.
 
 ## Variables
 
@@ -64,7 +61,7 @@ const yyyymmdstr = moment().format("YYYY/MM/DD");
 **👨‍🏫 Bien:**
 
 ```javascript
-const fechaACtual = moment().format("YYYY/MM/DD");
+const fechaActual = moment().format("YYYY/MM/DD");
 ```
 
 **[⬆ Volver arriba](#contenido)**
@@ -91,7 +88,7 @@ conseguirUsuario();
 
 Leeremos más código del que jamás escribiremos. Es importante que el código que
 escribamos sea legible y se puede buscar en él. Al no crear variables que sean
-significativas para entender nuestro código... Estamos entorpeciendo a sus lectores.
+significativas para entender nuestro código estamos entorpeciendo a sus lectores.
 Haz tus variables sean fáciles de entender y buscar. Herramientas como
 [buddy.js](https://github.com/danielstjules/buddy.js) y
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
@@ -100,7 +97,7 @@ pueden ayudan a identificar constantes no nombradas.
 **🙅‍ Mal:**
 
 ```javascript
-// Para que cojones sirve 86400000?
+// Para que co** sirve 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
@@ -147,7 +144,7 @@ Explícito es mejor que implícito.
 **🙅‍ Mal:**
 
 ```javascript
-const ciudades = ["Barcelona", "Madrid", "Sitges"];
+const ciudades = ["Sevilla", "Madrid", "Sitges"];
 ciudades.forEach(l => {
   hacerAlgo();
   hacerAlgoMas();
@@ -162,7 +159,7 @@ ciudades.forEach(l => {
 **👨‍🏫 Bien:**
 
 ```javascript
-const ciudades = ["Barcelona", "Madrid", "Sitges"];
+const ciudades = ["Sevilla", "Madrid", "Sitges"];
 ciudades.forEach(direccion => {
   hacerAlgo();
   hacerAlgoMas();
@@ -211,9 +208,9 @@ function pintarCoche(coche) {
 
 ### Utiliza argumentos por defecto en vez de circuitos cortos o condicionales
 
-Los argumentos por defecto suelen ser más limpios que los cortocircuitos. Ten
-en cuenta que si los usas, solo se asignara ese valor por defectos cuando el
-valor del parámetro sea `undefined`. Otros valores "falsos" como `''`, `" "`,
+Los argumentos por defecto suelen ser más limpios. Ten
+en cuenta que si los usas, solo se asignará ese valor por defectos cuando el
+valor del parámetro sea `undefined`. Otros valores "false" como `''`, `" "`,
 `false`,`null`, `0` y `NaN`, no serán reemplazado por un valor predeterminado
 pues se consideran valores como tal.
 
@@ -240,9 +237,9 @@ function crearMicroCerveceria(nombre = "Hipster Brew Co.") {
 
 ### Argumentos de una función (idealmente 2 o menos)
 
-Limitar la cantidad de parámetros de una función es increíblemente importante
+Limitar la cantidad de parámetros de una función es importante
 porque hacen que _las pruebas_ de tu función sean más sencillas. Tener más de tres
-lleva a una locura combinatoria donde tienes que probar toneladas de casos
+lleva a una locura ya que tienes que probar toneladas de casos
 diferentes con cada argumento por separado.
 
 El caso ideal es usar uno o dos argumentos, tres... deben evitarse si es posible.
@@ -256,15 +253,15 @@ código repetitivo en una clase, puedes usar un objeto en caso de estar necesita
 muchos parámetros.
 
 Para indicar que propiedades espera la función, puedes usar las funcionalidades
-de desestructuración que nos ofrece ES2015/ES6. Éstas tienen algunas ventajas:
+de desestructuración que nos ofrece ECMA6. Éstas tienen algunas ventajas:
 
-1. Cuando alguien mira la firma de la función, sabe inmediatamente que propiedades
-   están siendo usadas
+1. Cuando alguien ve la función, sabe inmediatamente que propiedades
+   están siendo usadas.
 2. La desetructuración también clona los valores primitivos especificados del `objeto argumento`
    pasado a la función. Esto puede servir de ayuda para prevenir efectos adversos.
    _Nota: Los objetos y los arrays que son desestructurados del objeto parámetro NO son clonados._
-3. Las herramientas lintera o _linterns_ pueden avisarte de qué propiedades del
-   objeto parámetro no están en uso. _Cosa que es imposile sin desestructuración._
+3. Las herramientas _linterns_ pueden avisarte de qué propiedades del
+   objeto parámetro no están en uso.
 
 **🙅‍ Mal:**
 
@@ -293,9 +290,9 @@ crearMenu({
 
 ### Las funciones deberían hacer una cosa
 
-De lejos, es la regla más importante en la ingeniería del software. Cuando
+Esta s la regla más importante en la ingeniería del software. Cuando
 las funciones hacen más de una cosa, son difíciles de componer y _testear_
-entre otras cosas. Si isolamos las funciones por acciones, éstas pueden ser
+entre otras cosas. Si **isolamos** las funciones por acciones, éstas pueden ser
 modificadas y mantenidas con mayor facilidad y tu código será mucho más limpio.
 De toda esta guía... si has de aprender algo, que sea esto. Ya estarás mmuy
 por delante de muchos desarrolladores de software.
@@ -328,7 +325,7 @@ function esClienteActivo(cliente) {
 
 **[⬆ Volver arriba](#contenido)**
 
-### Los nombres de las funciones deberían decir lo que hacen
+### Los nombres de las funciones deberían decir lo que hacen.
 
 **🙅‍ Mal:**
 
@@ -356,10 +353,10 @@ añadirMesAFecha(1, fecha);
 
 **[⬆ Volver arriba](#contenido)**
 
-### Las funciones deberían ser únicamente de un nivel de abstracción
+### Las funciones deberían tener únicamente un nivel de abstracción
 
 Cuando tienes más de un nivel de abstracción, tu función normalmente está
-hacicendo demasiado. Separarla en funciones más pequeñas te ayudará a poder
+haciendo demasiado. Separarla en funciones más pequeñas te ayudará a poder
 reutilizar código y te facilitará el _testear_ éstas.
 
 **🙅‍ Mal:**
@@ -430,20 +427,20 @@ function lexer(tokens) {
 
 ### Elimina código duplicado
 
-Haz todo lo posible para evitar duplicación de código. Duplicar código es
-malo porque significa que para editar un comportamiento... tendrás que modificarlko
+Haz todo lo posible para evitar duplicación de código. No debes duplicar código
+porque esto significa que para editar un comportamiento tendrás que modificarlo
 en más de un sitio. ¿Y no queremos trabajar de más, verdad?
 
 Como caso práctico: Imagina que tienes un restaurante. Llevas el registro del
-inventario: Todos tus tomates, cebollas, ajos, especies, etc... Si tuvieras más
+inventario: Todos tus tomates, cebollas, ajos, especias, etc... Si tuvieras más
 de una lista que tuvieras que actualizar cada vez que sirves un tomate o usas
-una especie, sería más fácil de cometer errores, además de todo el tiempo perdido.
+una especia, sería más fácil de cometer errores, además de todo el tiempo perdido.
 Si solo tienes una, la posibilidad de cometer una error se reduce a ésta!
 
 A menudo tienes código duplicado porque tienes dos o más cosas ligeramente
 diferentes, que tienen mucho en común, pero sus diferencias te obligan a tener
-ese código de más. Borrar la duplicación de código significa crear una abstracción
-que pueda manejar este conjunto de cosas diferentes con una sola función/módulo/clase.
+ese código de más. Borrar la duplicidad del código significa crear una abstracción
+que pueda manejar este conjunto de cosas diferentes con una sola function/module/class.
 
 Hacer que la abstracción sea correcta es fundamental y a veces bastante complejo.
 Es por eso que debes seguir los Principios `SOLID` establecidos en la sección _Clases_.
@@ -570,8 +567,8 @@ crearMenu(configuracionMenu);
 
 ### No utilices banderas o flags
 
-Las banderas o _flags_ te indican de que esa función hace más de una cosa. Ya
-que como vamos repitiendo, nuestras funciones solo deberían hacer una cosa, separa
+Las banderas o _flags_ te indican que esa función hace más de una cosa.
+Como vamos repitiendo, nuestras funciones solo deberían hacer una cosa, separa
 esa lógica que es diferenciada por la bandera o _flag_ en una nueva función.
 
 **🙅‍ Mal:**
@@ -611,7 +608,7 @@ Ahora bien, a veces necesitamos efectos adversos en nuestros programas. Como
 en el ejemplo anterior, quizás necesitas escribir en un fichero. Así pues, lo que
 queremos es centralizar donde se hace esta acción. No queremos que esta lógica
 la tengamos que escribir en cada una de las funciones o clases que van a utilizarla.
-Para eso, la encapsularemos en un servicio que haga eso. Sólo eso.
+Para eso, la encapsularemos en un servicio que haga solo eso.
 
 El objetivo principal es evitar errores comunes como compartir el estado entre objetos
 sin ninguna estructura, usando tipos de datos mutables que pueden ser escritos por cualquier cosa
@@ -623,7 +620,6 @@ más feliz que la gran mayoría de otros programadores.
 ```javascript
 // Variable Global referenciada por la siguiente función
 // Si tuvieramos otra función que usara ese nombre, podría ser un array y lo estaríamos rompiendo
-// If we had another function that used this name, now it'd be an array and it could break it.
 let nombre = 'Ryan McDermott';
 
 function separarEnNombreYApellido) {
